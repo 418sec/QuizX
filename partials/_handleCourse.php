@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   {
     if(@$_GET['op']== 'add') 
     {
-    $cname = $_POST['cname'];
+    $cname = addslashes($_POST['cname']);
     $existSql = "SELECT * FROM `course` WHERE cname = '$cname'";
     $result = mysqli_query($conn, $existSql);
     $numRows = mysqli_num_rows($result);
@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     header("location: ../teacher.php?courseCreated=false&error=$showError");
     }
     else if(@$_GET['op']== 'edit'){
-    $cname = $_POST['cname'];
+    $cname = addslashes($_POST['cname'])\;
     $ncname = $_POST['ncname'];
     $existSql = "SELECT * FROM `course` WHERE cname = '$cname'";
     $result = mysqli_query($conn, $existSql);
@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     header("location: ../teacher.php?courseUpdated=false&error=$showError");
     }
     else if(@$_GET['op']== 'delete'){
-    $cname = $_POST['cname'];
+    $cname = addslashes($_POST['cname']);
     $existSql = "SELECT * FROM `course` WHERE `cname` = '$cname'";
     $result = mysqli_query($conn, $existSql);
     $numRows = mysqli_num_rows($result);
